@@ -14,10 +14,12 @@ import Vision
 
 // MARK: - QKMRZScannerViewDelegate
 public protocol QKMRZScannerViewDelegate: AnyObject {
+    @available(iOS 11.0, *)
     func mrzScannerView(_ mrzScannerView: QKMRZScannerView, didFind scanResult: QKMRZScanResult)
 }
 
 // MARK: - QKMRZScannerView
+@available(iOS 11.0, *)
 @IBDesignable
 public class QKMRZScannerView: UIView {
     fileprivate let tesseract = SwiftyTesseract(language: .custom("ocrb"), dataSource: Bundle(for: QKMRZScannerView.self), engineMode: .tesseractOnly)
@@ -251,6 +253,7 @@ public class QKMRZScannerView: UIView {
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
+@available(iOS 11.0, *)
 extension QKMRZScannerView: AVCaptureVideoDataOutputSampleBufferDelegate {
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let cgImage = CMSampleBufferGetImageBuffer(sampleBuffer)?.cgImage else {
